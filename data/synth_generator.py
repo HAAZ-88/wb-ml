@@ -14,7 +14,7 @@ rng = np.random.default_rng(args.seed)
 s = rng.integers(0, 2, size=args.n)
 X, y = make_classification(n_samples=args.n,
                            n_features=5,
-                           n_informative=4,
+                           n_informative=3,
                            n_redundant=0,
                            weights=[1-args.imbalance, args.imbalance],
                            random_state=args.seed)
