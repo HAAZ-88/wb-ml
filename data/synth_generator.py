@@ -12,23 +12,30 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
-    # Versión segura: n_features > n_informative + n_redundant + n_repeated
+    # Configuración segura: 10 > 2 + 0 + 0
+    n_features = 10
+    n_informative = 2
+    n_redundant = 0
+    n_repeated = 0
+
     X, y = make_classification(n_samples=args.n,
-                               n_features=6,
-                               n_informative=2,
-                               n_redundant=0,
-                               n_repeated=0,
+                               n_features=n_features,
+                               n_informative=n_informative,
+                               n_redundant=n_redundant,
+                               n_repeated=n_repeated,
                                weights=[1 - args.imbalance, args.imbalance],
                                random_state=args.seed)
 
-    # Crear variable sensible (grupo) correlacionada con clase
+    assert X.shape[1] == n_features, "Verifica que las columnas generadas son correctas"
+
+    # Crear variable sensible correlacionada artificialmente con y
     s = np.copy(y)
     flip_mask = np.random.rand(args.n) < args.dp_gap
     s[flip_mask] = 1 - s[flip_mask]
 
-    # Guardar como CSV
-    df = pd.DataFrame(X, columns=[f"x{i}" for i in range(X.shape[1])])
+    # Guardar CSV
+    df = pd.DataFrame(X, columns=[f"x{i}" for i in range(n_features)])
     df["y"] = y
     df["s"] = s
     df.to_csv("data/synthetic_data.csv", index=False)
-    print("Archivo generado: data/synthetic_data.csv")
+    print("✅ Archivo generado: data/synthetic_data.csv")
