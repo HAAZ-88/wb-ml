@@ -7,6 +7,8 @@ Usage:
 import argparse, os, json, numpy as np, pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, f1_score
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from src.model import WBLogisticModel
 from src.metrics import tpr_gap, dp_gap
 
