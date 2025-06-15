@@ -12,9 +12,9 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
-    # Generar datos sintéticos asegurando suma < n_features
+    # Versión segura: n_features > n_informative + n_redundant + n_repeated
     X, y = make_classification(n_samples=args.n,
-                               n_features=5,
+                               n_features=6,
                                n_informative=2,
                                n_redundant=0,
                                n_repeated=0,
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     # Crear variable sensible (grupo) correlacionada con clase
     s = np.copy(y)
     flip_mask = np.random.rand(args.n) < args.dp_gap
-    s[flip_mask] = 1 - s[flip_mask]  # invertir clase para inducir gap
+    s[flip_mask] = 1 - s[flip_mask]
 
     # Guardar como CSV
     df = pd.DataFrame(X, columns=[f"x{i}" for i in range(X.shape[1])])
