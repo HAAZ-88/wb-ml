@@ -1,0 +1,16 @@
+{
+  "title": "WB‑ML: Welfare‑Based Machine Learning Classifier",
+  "upload_type": "software",
+  "authors": [
+    {
+      "name": "Argandoña Zubieta, Herlan André",
+      "affiliation": "Independent Researcher",
+      "email": "haaz.eco@outlook.com"
+    }
+  ],
+  "description": "Código y datos para entrenar y evaluar clasificadores que incorporan criterios de bienestar social y equidad, con resultados sintéticos y aplicados a Bolivia (Global Findex 2021).",
+  "license": "MIT",
+  "version": "1.0.0",
+  "keywords": ["machine learning", "wellbeing", "fairness", "Bolivia", "Global Findex"],
+  "access_right": "open"
+}
